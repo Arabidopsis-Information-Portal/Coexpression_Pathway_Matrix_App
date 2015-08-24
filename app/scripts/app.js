@@ -34,7 +34,7 @@
 	/* Start app log */
 	/* - - - - - - - - - -  */ 
 	var init = function init() {
-            log( 'Initializing app...' );
+            console.log( 'Initializing app...' );
 	};	
 
 
