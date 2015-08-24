@@ -912,45 +912,45 @@
 	}, function(result) { createMatrixWrapper(pathway_container,orderC,waitRegionC,errorC,cellC,result);}, function(err) { showError(errorC,waitRegionC,err);});
 
 	// Setup clear button function for gene identifier search
-	$('#identifier_search_form_reset').on('click', function() {
+	//$('#identifier_search_form_reset').on('click', function() {
 
-	    $('#errorD').empty();
+	    //$('#errorD').empty();
 	    
 	    // The search is done, hide the waiting bar
-	    $('#wait_region4').empty();
+	    //$('#wait_region4').empty();
 	    
-	    $('#geneIdentifier').val('AT5G63960');
+	    //$('#geneIdentifier').val('AT5G63960');
 
 	    // Draw an example bar graph
-	    drawDefaultGeneGraph();
-	});
+	    //drawDefaultGeneGraph();
+	//});
 
 	// Setup submit button functions which call the main wrapper function
-	$('form[name=identifier_search_form]',appContext).on('submit',function(e){
+	//$('form[name=identifier_search_form]',appContext).on('submit',function(e){
 	    
-            log( 'Searching by gene identifier...' );
-	    e.preventDefault();
+            //log( 'Searching by gene identifier...' );
+	    //e.preventDefault();
 
-	    $('#wait_region4', appContext).html('<div id="loader_icon"><img src="https://apps.araport.org/jbrowse/plugins/EnsemblVariants/img/ajax-loader.gif"></div>');
-	    filenameD = this.geneIdentifier.value;
+	    //$('#wait_region4', appContext).html('<div id="loader_icon"><img src="https://apps.araport.org/jbrowse/plugins/EnsemblVariants/img/ajax-loader.gif"></div>');
+	    //filenameD = this.geneIdentifier.value;
 
-	    params = {
-		locus: filenameD,
-		relationship_type: 'correlation_coefficient',
-		threshold: filterValD
-	    };
+	    //params = {
+		//locus: filenameD,
+		//relationship_type: 'correlation_coefficient',
+		//threshold: filterValD
+	    //};
 
 	    // Retrieve co-expression values for this gene
-	    Agave.api.adama.search({
-		'namespace': 'aip',
-		'service': 'atted_coexpressed_by_locus_v0.2.0',
-		'queryParams': params
-	    }, function(result) { createGeneChartWrapper(result);}, function(err) { showError(errorD,err);});
+	    //Agave.api.adama.search({
+	    //	'namespace': 'aip',
+		//'service': 'atted_coexpressed_by_locus_v0.2.0',
+		//'queryParams': params
+	    //}, function(result) { createGeneChartWrapper(result);}, function(err) { showError(errorD,err);});
 
-	});
+	//});
 
 	// Draw an example bar graph
-	drawDefaultGeneGraph();
+	//drawDefaultGeneGraph();
 	
 	/* - - - */
 	/* Done! */
