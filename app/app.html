@@ -1,0 +1,258 @@
+<div class="science-app" data-app-name="matrix">
+  <h2>Welcome to the Co-expression Matrix App!</h2>
+
+
+  <ul id="ev_tabs" class="nav nav-tabs" role="tablist">
+    <li id="t_class" class="active"><a href="#d_class" role="tab" data-toggle="tab">View By Class</a></li>
+    <li id="t_subclass"><a href="#d_subclass" role="tab" data-toggle="tab">View By Subclass</a></li>
+    <li id="t_pathway"><a href="#d_pathway" role="tab" data-toggle="tab">View By Pathway</a></li>
+    <li id="t_gene" class="active"><a href="#d_gene" role="tab" data-toggle="tab">View By Gene</a></li>
+  </ul>
+  
+  <div id="ev_tab_content" class="tab-content">
+    
+    <div class="tab-pane active" id="d_class">
+      <h4>Display <i>Arabidopsis thaliana</i> co-expressed genes from <a href="http://atted.jp">ATTED-II</a> within the selected <a href="http://www.genome.jp/kegg-bin/get_htext?br08901.keg">Kegg Pathway class</a>.</h4>
+      <p>COR: Pearson’s correlation coefficient between gene A and gene B</p>
+      <div id="errorA"></div>
+      <br>
+      <div class="form-group col-xs-3">
+	<b>Display</b>:
+	<select name="displayClass" id="displayClass" class="form-control">
+	  <option value="c1">Metabolism</option>
+	  <option value="c2">Genetic Information Processing</option>
+	  <option value="c3">Environmental Information Processing</option>
+	  <option value="c4">Cellular Processes</option>
+	  <option value="c5" selected="selected">Organismal Systems</option>
+	</select>
+      </div>
+      
+      <div class="form-group col-xs-2">
+	<b>COR Threshold filter</b>:
+	<select name="filterA" id="filterA" class="form-control">
+	  <option value="0.5" selected="selected">&#62;0.5</option>
+	  <option value="0.75">&#62;0.75</option>
+	</select>
+      </div>
+      
+      <div class="form-group col-xs-2">
+	<b>Order by</b>:
+	<select id="orderA" class="form-control">
+	  <option value="name">Gene</option>
+	  <option value="count">Expression Value</option>
+	  <option value="group">Class</option>
+	</select>
+      </div>
+      <div id="wait_region1"></div>
+      <div id="matrix_container_a"></div>
+      <p>This matrix is built with <a href="http://d3js.org">d3.js</a>.</p>
+      <br />
+      
+    </div>
+    
+    <div class="tab-pane" id="d_subclass">
+      <h4>Display <i>Arabidopsis thaliana</i> co-expressed genes from <a href="http://atted.jp">ATTED-II</a> within the selected <a href="http://www.genome.jp/kegg-bin/get_htext?br08901.keg">Kegg Pathway subclass</a>.</h4>
+      <p>COR: Pearson’s correlation coefficient between gene A and gene B</p>
+      <div id="errorB"></div>
+      <br>
+      <div class="form-group col-xs-3">
+	<b>Display</b>:
+	<select name="displaySubClass" id="displaySubClass" class="form-control">
+	  <option value="sc1">Amino acid metabolism</option>
+	  <option value="sc2">Biosynthesis of other secondary metaboliteshesis of other secondary metabolites</option>
+	  <option value="sc3">Carbohydrate metabolism</option>
+	  <option value="sc4">Energy metabolism</option>
+	  <!--<option value="sc5">Global and overview maps</option>-->
+	  <option value="sc6">Glycanbiosynthesis and metabolism</option>
+	  <option value="sc7">Lipid metabolism</option>
+	  <option value="sc8">Metabolism of cofactors and vitaminsism of cofactors and vitamins</option>
+	  <option value="sc9">Metabolism of other amino acids</option>
+	  <option value="sc10">Metabolism of terpenoids and polyketidesism of terpenoids and polyketides</option>
+	  <option value="sc11">Nucleotide metabolism</option>
+	  <option value="sc12">Folding,Protein export</option>
+	  <option value="sc13">Replication and repair</option>
+	  <option value="sc14">Transcription</option>
+	  <option value="sc15">Translation</option>
+	  <!--<option value="sc16">Membrane transport</option>-->
+	  <option value="sc17">Signal transduction</option>
+	  <option value="sc18">Transport and catabolism</option>
+	  <option value="sc19"selected="selected" >Environmental adaptation</option>
+	</select>
+      </div>
+
+      <div class="form-group col-xs-2">
+	<b>COR Threshold filter</b>:
+	<select name="filterB" id="filterB" class="form-control" >
+	  <option value="0.5"selected="selected" >&#62;0.5</option>
+	  <option value="0.75">&#62;0.75</option>
+	</select>
+      </div>
+
+      <div class="form-group col-xs-2">
+	<b>Order by</b>:
+	<select id="orderB" class="form-control">
+	  <option value="name">Gene</option>
+	  <option value="count">Expression Value</option>
+	  <option value="group">Subclass</option>
+	</select>
+      </div>
+
+      <div id="wait_region2"></div>
+      <div id="matrix_container_b"></div>
+      <p>This matrix is built with <a href="http://d3js.org">d3.js</a>.</p>
+      <br />
+    </div>
+    
+    <div class="tab-pane" id="d_pathway">
+      <h4>Display <i>Arabidopsis thaliana</i> co-expressed genes from <a href="http://atted.jp">ATTED-II</a> within the selected <a href="http://www.genome.jp/kegg-bin/get_htext?br08901.keg">Kegg Pathway</a>.</h4>
+      <p>COR: Pearson’s correlation coefficient between gene A and gene B</p>
+      <div id="errorC"></div>
+      <br>
+      <div class="form-group col-xs-3">
+      <b>Display</b>:
+	<select name="displayPathway" id="displayPathway" class="form-control">
+	  <option value="kp00010">00010 Glycolysis / Gluconeogenesis</option>
+	  <option value="kp00020">00020 Citrate cycle (TCA cycle)</option>
+	  <option value="kp00040">00040 Pentose and glucuronate interconversions</option>
+	  <option value="kp00051">00051 Fructose and mannose metabolism</option>
+	  <option value="kp00052">00052 Galactose metabolism</option>
+	  <option value="kp00061">00061 Fatty acid biosynthesis</option>
+	  <option value="kp00062">00062 Fatty acid elongation</option>
+	  <option value="kp00071">00071 Fatty acid degradation</option>
+	  <option value="kp00073">00073 Cutin, suberine and wax biosynthesis</option>
+	  <option value="kp00100">00100 Steroid biosynthesis</option>
+	  <option value="kp00130">00130 Ubiquinone and other terpenoid-quinone biosynthesis</option>
+	  <option value="kp00190">00190 Oxidative phosphorylation</option>
+	  <option value="kp00195">00195 Photosynthesis</option>
+	  <option value="kp00196">00196 Photosynthesis - antenna proteins</option>
+	  <option value="kp00220">00220 Arginine biosynthesis</option>
+	  <option value="kp00230">00230 Purine metabolism</option>
+	  <option value="kp00240">00240 Pyrimidine metabolism</option>
+	  <option value="kp00260">00260 Glycine, serine and threonine metabolism</option>
+	  <option value="kp00261">00261 Monobactam biosynthesis</option>
+	  <option value="kp00270">00270 Cysteine and methionine metabolism</option>
+	  <option value="kp00280">00280 Valine, leucine and isoleucine degradation</option>
+	  <option value="kp00300">00300 Lysine biosynthesis</option>
+	  <option value="kp00330">00330 Arginine and proline metabolism</option>
+	  <option value="kp00340">00340 Histidine metabolism</option>
+	  <option value="kp00380">00380 Tryptophan metabolism</option>
+	  <option value="kp00400">00400 Phenylalanine, tyrosine and tryptophan biosynthesis</option>
+	  <option value="kp00410">00410 beta-Alanine metabolism</option>
+	  <option value="kp00430">00430 Taurine and hypotaurine metabolism</option>
+	  <option value="kp00460">00460 Cyanoamino acid metabolism</option>
+	  <option value="kp00510">00510 N-Glycan biosynthesis</option>
+	  <option value="kp00520">00520 Amino sugar and nucleotide sugar metabolism</option>
+	  <option value="kp00561">00561 Glycerolipid metabolism</option>
+	  <option value="kp00562">00562 Inositol phosphate metabolism</option>
+	  <option value="kp00564">00564 Glycerophospholipid metabolism</option>
+	  <option value="kp00591">00591 Linoleic acid metabolism</option>
+	  <option value="kp00592">00592 alpha-Linolenic acid metabolism</option>
+	  <option value="kp00600">00600 Sphingolipid metabolism</option>
+	  <option value="kp00620">00620 Pyruvate metabolism</option>
+	  <option value="kp00630">00630 Glyoxylate and dicarboxylate metabolism</option>
+	  <option value="kp00640">00640 Propanoate metabolism</option>
+	  <option value="kp00660">00660 C5-Branched dibasic acid metabolism</option>
+	  <option value="kp00670">00670 One carbon pool by folate</option>
+	  <option value="kp00710">00710 Carbon fixation in photosynthetic organisms</option>
+	  <option value="kp00730">00730 Thiamine metabolism</option>
+	  <option value="kp00750">00750 Vitamin B6 metabolism</option>
+	  <option value="kp00770">00770 Pantothenate and CoA biosynthesis</option>
+	  <option value="kp00780">00780 Biotin metabolism</option>
+	  <option value="kp00785">00785 Lipoic acid metabolism</option>
+	  <option value="kp00790">00790 Folate biosynthesis</option>
+	  <option value="kp00900">00900 Terpenoid backbone biosynthesis</option>
+	  <option value="kp00901">00901 Indole alkaloid biosynthesis</option>
+	  <option value="kp00902">00902 Monoterpenoid biosynthesis</option>
+	  <option value="kp00903">00903 Limonene and pinene degradation</option>
+	  <option value="kp00904">00904 Diterpenoid biosynthesis</option>
+	  <option value="kp00906">00906 Carotenoid biosynthesis</option>
+	  <option value="kp00909">00909 Sesquiterpenoid and triterpenoid biosynthesis</option>
+	  <option value="kp00910">00910 Nitrogen metabolism</option>
+	  <option value="kp00920">00920 Sulfur metabolism</option>
+	  <option value="kp00940">00940 Phenylpropanoid biosynthesis</option>
+	  <option value="kp00941">00941 Flavonoid biosynthesis</option>
+	  <option value="kp00942">00942 Anthocyanin biosynthesis</option>
+	  <option value="kp00945">00945 Stilbenoid, diarylheptanoid and gingerol biosynthesis</option>
+	  <option value="kp00960">00960 Tropane, piperidine and pyridine alkaloid biosynthesis</option>
+	  <option value="kp00966">00966 Glucosinolate biosynthesis</option>
+	  <option value="kp00970">00970 Aminoacyl-tRNA biosynthesis</option>
+	  <option value="kp01040">01040 Biosynthesis of unsaturated fatty acids</option>
+	  <option value="kp03008">03008 Ribosome biogenesis in eukaryotes</option>
+	  <option value="kp03010">03010 Ribosome</option>
+	  <option value="kp03013">03013 RNA transport</option>
+	  <option value="kp03015">03015 mRNA surveillance pathway</option>
+	  <option value="kp03018">03018 RNA degradation</option>
+	  <option value="kp03022">03022 Basal transcription factors</option>
+	  <option value="kp03030">03030 DNA replication</option>
+	  <option value="kp03040">03040 Spliceosome</option>
+	  <option value="kp03050">03050 Proteasome</option>
+	  <option value="kp03060">03060 Protein export</option>
+	  <option value="kp03420">03420 Nucleotide excision repair</option>
+	  <option value="kp03430">03430 Mismatch repair</option>
+	  <option value="kp03440">03440 Homologous recombination</option>
+	  <option value="kp04075">04075 Plant hormone signal transduction</option>
+	  <option value="kp04120">04120 Ubiquitin mediated proteolysis</option>
+	  <option value="kp04130">04130 SNARE interactions in vesicular transport</option>
+	  <option value="kp04140">04140 Regulation of autophagy</option>
+	  <option value="kp04141">04141 Protein processing in endoplasmic reticulum</option>
+	  <option value="kp04144">04144 Endocytosis</option>
+	  <option value="kp04145">04145 Phagosome</option>
+	  <option value="kp04146">04146 Peroxisome</option>
+	  <option value="kp04626" selected="selected">04626 Plant-pathogen interaction</option>
+	  <option value="kp04712">04712 Circadian rhythm - plant</option>
+	</select>
+      </div>
+
+      <div class="form-group col-xs-2">
+      <b>COR Threshold filter</b>:
+	<select name="filterC" id="filterC" class="form-control">
+	  <option value="0.5" selected="selected" >&#62;0.5</option>
+	  <option value="0.75">&#62;0.75</option>
+	</select>
+      </div>
+
+      <div class="form-group col-xs-2">
+	<b>Order by</b>:
+	  <select id="orderC" class="form-control">
+	  <option value="name">Gene</option>
+	  <option value="count">Expression Value</option>
+	  <option value="group">Pathway</option>
+	</select>
+      </div>
+
+      <div id="wait_region3"></div>
+      <div id="matrix_container_c"></div>
+      <p>This matrix is built with <a href="http://d3js.org">d3.js</a>.</p>
+      <br />
+    </div>
+
+    <div class="tab-pane" id="d_gene">
+      <h4>Display Co-expressed Genes in Bar Chart</h4>
+      <h5>This app queries the co-expressed genes from the <a href="http://atted.jp">ATTED-II</a> database using the <a href="https://github.com/Arabidopsis-Information-Portal/atted_webservices">atted_coexpressed_by_locus</a> API.</h5>
+      <p>A minimum threshold of COR = 0.5 is applied to the query.</p>
+      <p>COR: Pearson’s correlation coefficient between gene A and gene B</p>
+      <div id="errorD"></div>
+      <br>
+      <div class="form-group col-xs-4">
+	<br>
+	<b>Enter a gene identifier:</b>
+	
+        <form name="identifier_search_form" role="form">
+          <label for="geneIdentifier" class="control-label"></label>
+          <input type="text" name="geneIdentifier" id="geneIdentifier" value="AT5G63960" class="form-control" placeholder="AT5G63960" />
+	  <br />
+	  <button type="submit" class="btn btn-success">Retrieve</button>
+          <button type="button" class="btn btn-danger" id="identifier_search_form_reset">Reset</button>
+	  
+	</form>
+      </div>
+      <br />
+      <div id="wait_region4"></div>
+      <div id="matrix_container_d"></div>
+      <p>This bar graph is built with <a href="http://d3js.org">d3.js</a>.</p>
+      <br />
+    </div>
+    
+  </div>
+
+
