@@ -1,4 +1,4 @@
-# Co-expression Pathway Matrix App v1.0
+# D3 Matrix Demo App v0.1
 
 Display a matrix of Arabidopsis thaliana gene co-expression values from [ATTED-II](http://atted.jp) that are within a selected [Kegg Pathway](http://www.genome.jp/kegg-bin/get_htext?br08902.keg) class, subclass or pathway. This app uses [d3.js](http://d3js.org) to build the matrices.
 
@@ -19,4 +19,3 @@ Your application code is in the `app/` subdirectory:
 |       +-- app.css
 
 ```
-

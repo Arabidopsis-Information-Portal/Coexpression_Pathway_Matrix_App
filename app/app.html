@@ -1,14 +1,29 @@
 <div class="science-app" data-app-name="matrix">
   <ul id="ev_tabs" class="nav nav-tabs" role="tablist">
-    <li id="t_class" class="active"><a href="#d_class" role="tab" data-toggle="tab">View By Class</a></li>
+    <li id="about_tab" class="active"><a href="#about" role="tab" data-toggle="tab">About</a></li>
+    <li id="t_class"><a href="#d_class" role="tab" data-toggle="tab">View By Class</a></li>
     <li id="t_subclass"><a href="#d_subclass" role="tab" data-toggle="tab">View By Subclass</a></li>
     <li id="t_pathway"><a href="#d_pathway" role="tab" data-toggle="tab">View By Pathway</a></li>
-    <!--<li id="t_gene" class="active"><a href="#d_gene" role="tab" data-toggle="tab">View By Gene</a></li>-->
   </ul>
-  
+
   <div id="ev_tab_content" class="tab-content">
-    
-    <div class="tab-pane active" id="d_class">
+
+   <div role="tabpanel" class="tab-pane active" id="about">
+    <div class="container">
+        <h4>D3 Matrix Demo</h4>
+        <blockquote>
+            This is a demonstration application developed by Maria Kim for the scientific investigation of co-expression data. Each tab
+            displays a matrix of Arabidopsis thaliana gene co-expression values from <a href="http://atted.jp" target="_blank">ATTED-II <i class="fa fa-external-link"></i></a>
+            that are within a selected <a href="http://www.genome.jp/kegg-bin/get_htext?br08902.keg" target="_blank">Kegg Pathway <i class="fa fa-external-link"></i></a>
+            class, subclass or pathway. This application uses the <a href="http://d3js.org" target="_blank">D3 JavaScript library <i class="fa fa-external-link"></i></a>
+            to build the matrices. Each matrix can be manipulated with three parameters; display (KEGG class, subclass, or pathway), a correlation coefficient filter,
+            and an order. The data is not live or dynamic as it is stored in local files in the JSON format.
+        </blockquote>
+    </div>
+   </div>
+
+
+    <div class="tab-pane" id="d_class">
       <h4>Display <i>Arabidopsis thaliana</i> co-expressed genes from <a href="http://atted.jp">ATTED-II</a> within the selected <a href="http://www.genome.jp/kegg-bin/get_htext?br08901.keg">Kegg Pathway class</a>.</h4>
       <p>COR: Pearson’s correlation coefficient between gene A and gene B</p>
       <div id="errorA"></div>
@@ -23,7 +38,7 @@
 	  <option value="c5" selected="selected">Organismal Systems</option>
 	</select>
       </div>
-      
+
       <div class="form-group col-xs-2">
 	<b>COR Threshold filter</b>:
 	<select name="filterA" id="filterA" class="form-control">
@@ -31,7 +46,7 @@
 	  <option value="0.75">&#62;0.75</option>
 	</select>
       </div>
-      
+
       <div class="form-group col-xs-2">
 	<b>Order by</b>:
 	<select id="orderA" class="form-control">
@@ -44,9 +59,9 @@
       <div id="matrix_container_a"></div>
       <p>This matrix is built with <a href="http://d3js.org">d3.js</a>.</p>
       <br />
-      
+
     </div>
-    
+
     <div class="tab-pane" id="d_subclass">
       <h4>Display <i>Arabidopsis thaliana</i> co-expressed genes from <a href="http://atted.jp">ATTED-II</a> within the selected <a href="http://www.genome.jp/kegg-bin/get_htext?br08901.keg">Kegg Pathway subclass</a>.</h4>
       <p>COR: Pearson’s correlation coefficient between gene A and gene B</p>
@@ -99,7 +114,7 @@
       <p>This matrix is built with <a href="http://d3js.org">d3.js</a>.</p>
       <br />
     </div>
-    
+
     <div class="tab-pane" id="d_pathway">
       <h4>Display <i>Arabidopsis thaliana</i> co-expressed genes from <a href="http://atted.jp">ATTED-II</a> within the selected <a href="http://www.genome.jp/kegg-bin/get_htext?br08901.keg">Kegg Pathway</a>.</h4>
       <p>COR: Pearson’s correlation coefficient between gene A and gene B</p>
@@ -223,33 +238,4 @@
       <br />
     </div>
 
-    <!--<div class="tab-pane" id="d_gene">
-      <h4>Display Co-expressed Genes in Bar Chart</h4>
-      <h5>This app queries the co-expressed genes from the <a href="http://atted.jp">ATTED-II</a> database using the <a href="https://github.com/Arabidopsis-Information-Portal/atted_webservices">atted_coexpressed_by_locus</a> API.</h5>
-      <p>A minimum threshold of COR = 0.5 is applied to the query.</p>
-      <p>COR: Pearson’s correlation coefficient between gene A and gene B</p>
-      <div id="errorD"></div>
-      <br>
-      <div class="form-group col-xs-4">
-	<br>
-	<b>Enter a gene identifier:</b>
-	
-        <form name="identifier_search_form" role="form">
-          <label for="geneIdentifier" class="control-label"></label>
-          <input type="text" name="geneIdentifier" id="geneIdentifier" value="AT5G63960" class="form-control" placeholder="AT5G63960" />
-	  <br />
-	  <button type="submit" class="btn btn-success">Retrieve</button>
-          <button type="button" class="btn btn-danger" id="identifier_search_form_reset">Reset</button>
-	  
-	</form>
-      </div>
-      <br />
-      <div id="wait_region4"></div>
-      <div id="matrix_container_d"></div>
-      <p>This bar graph is built with <a href="http://d3js.org">d3.js</a>.</p>
-      <br />
-    </div>-->
-    
   </div>
-
-
