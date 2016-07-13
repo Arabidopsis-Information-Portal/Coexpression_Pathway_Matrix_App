@@ -1,5 +1,5 @@
 {
-  "name": "matrix",
+  "name": "matrix-app",
   "private": true,
   "dependencies": {
     "d3": "~3.5.6"
